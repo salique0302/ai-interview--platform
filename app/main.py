@@ -9,7 +9,10 @@ def create_app() -> FastAPI:
         title="AI Interview Platform API",
         description="Backend system for AI-powered interview and resume feedback platform",
         version="0.1.0"
-    )
+)
+
+    from app.api.routes import auth
+    app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 
     @app.on_event("startup")
     def startup_event():
